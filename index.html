@@ -225,7 +225,7 @@
   .hero {
     min-height: calc(100vh - 112px);
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.4fr 0.6fr 0.8fr;
     background: var(--white);
     padding-top: 0;
   }
@@ -234,7 +234,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 80px 64px 80px 80px;
+    padding: 80px 48px 80px 80px;
   }
 
   .hero-eyebrow {
@@ -251,7 +251,7 @@
 
   .hero-name {
     font-family: var(--serif);
-    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-size: clamp(2.6rem, 4vw, 5rem);
     font-weight: 300;
     line-height: 1.05;
     letter-spacing: -0.02em;
@@ -268,37 +268,37 @@
 
   .hero-years {
     font-family: var(--serif);
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 300;
     color: var(--accent-light);
-    margin-bottom: 40px;
+    margin-bottom: 32px;
     opacity: 0;
     animation: fadeUp 0.8s ease 0.45s forwards;
   }
 
   .hero-desc {
-    font-size: 1.05rem;
+    font-size: 0.97rem;
     color: var(--gray-600);
-    max-width: 420px;
+    max-width: 380px;
     line-height: 1.75;
-    margin-bottom: 48px;
+    margin-bottom: 40px;
     opacity: 0;
     animation: fadeUp 0.8s ease 0.55s forwards;
   }
 
   .hero-cta {
     display: flex;
-    gap: 20px;
+    gap: 16px;
     opacity: 0;
     animation: fadeUp 0.8s ease 0.65s forwards;
   }
 
   .btn-primary {
     display: inline-block;
-    padding: 14px 32px;
+    padding: 12px 28px;
     background: var(--black);
     color: var(--white);
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-decoration: none;
@@ -309,10 +309,10 @@
 
   .btn-secondary {
     display: inline-block;
-    padding: 14px 32px;
+    padding: 12px 28px;
     border: 1px solid var(--gray-200);
     color: var(--black);
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-decoration: none;
@@ -323,11 +323,7 @@
 
   .hero-image {
     position: relative;
-    background: var(--gray-100);
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   .hero-photo {
@@ -337,6 +333,40 @@
     object-position: center top;
     filter: grayscale(15%);
     display: block;
+  }
+
+  .hero-stats {
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 48px;
+    gap: 0;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.8s forwards;
+  }
+
+  .hero-stat-item {
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .hero-stat-item:last-child { border-bottom: none; }
+
+  .hero-stat-number {
+    font-family: var(--serif);
+    font-size: 3.2rem;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--accent-light);
+    margin-bottom: 6px;
+  }
+
+  .hero-stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
   }
 
   .hero-text {
@@ -947,11 +977,12 @@
   @media (max-width: 900px) {
     nav { padding: 0 24px; }
     .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; }
-    .hero-image { min-height: 50vw; display: none; }
-    .hero-text { padding: 60px 32px; }
+    .hero { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .hero-image { height: 50vw; }
+    .hero-stats { flex-direction: row; flex-wrap: wrap; padding: 32px; gap: 0; }
+    .hero-stat-item { width: 50%; border-bottom: 1px solid rgba(255,255,255,0.08); border-right: 1px solid rgba(255,255,255,0.08); padding: 20px; }
+    .hero-text { padding: 48px 32px; }
     section { padding: 60px 32px; }
-    .stats-band { grid-template-columns: repeat(2,1fr); padding: 48px 32px; }
     .bio-section { grid-template-columns: 1fr; }
     .bio-aside { position: static; }
     .works-grid { grid-template-columns: 1fr; }
@@ -1044,32 +1075,32 @@
          loading="eager"
          onerror="this.style.display='none'">
   </div>
+  <div class="hero-stats">
+    <div class="hero-stat-item">
+      <div class="hero-stat-number">7</div>
+      <div class="hero-stat-label" data-lang-inline="sk">Symfónií</div>
+      <div class="hero-stat-label" data-lang-inline="de">Symphonien</div>
+    </div>
+    <div class="hero-stat-item">
+      <div class="hero-stat-number">3</div>
+      <div class="hero-stat-label" data-lang-inline="sk">Opery</div>
+      <div class="hero-stat-label" data-lang-inline="de">Opern</div>
+    </div>
+    <div class="hero-stat-item">
+      <div class="hero-stat-number">10+</div>
+      <div class="hero-stat-label" data-lang-inline="sk">Sláčikové kvartety</div>
+      <div class="hero-stat-label" data-lang-inline="de">Streichquartette</div>
+    </div>
+    <div class="hero-stat-item">
+      <div class="hero-stat-number">50+</div>
+      <div class="hero-stat-label" data-lang-inline="sk">Rokov tvorby</div>
+      <div class="hero-stat-label" data-lang-inline="de">Jahre des Schaffens</div>
+    </div>
+  </div>
 </section>
 
-<!-- STATS -->
+<!-- STATS removed - now in hero -->
 <main>
-<div class="stats-band" aria-label="Štatistiky tvorby">
-  <div class="stat-item">
-    <div class="stat-number">7</div>
-    <div class="stat-label" data-lang-inline="sk">Symfónií</div>
-    <div class="stat-label" data-lang-inline="de">Symphonien</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-number">3</div>
-    <div class="stat-label" data-lang-inline="sk">Opery</div>
-    <div class="stat-label" data-lang-inline="de">Opern</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-number">10+</div>
-    <div class="stat-label" data-lang-inline="sk">Sláčikové kvartety</div>
-    <div class="stat-label" data-lang-inline="de">Streichquartette</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-number">50+</div>
-    <div class="stat-label" data-lang-inline="sk">Rokov tvorby</div>
-    <div class="stat-label" data-lang-inline="de">Jahre des Schaffens</div>
-  </div>
-</div>
 
 <!-- BIO -->
 <section id="zivotopis" style="background:var(--white)">
