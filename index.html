@@ -224,8 +224,8 @@
   /* ── HERO ── */
   .hero {
     min-height: calc(100vh - 112px);
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     background: var(--white);
     padding-top: 0;
   }
@@ -235,7 +235,6 @@
     flex-direction: column;
     justify-content: center;
     padding: 80px 64px 80px 80px;
-    max-width: 780px;
   }
 
   .hero-eyebrow {
@@ -244,19 +243,10 @@
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 32px;
-    max-width: 500px;
+    max-width: 420px;
     line-height: 1.8;
     opacity: 0;
     animation: fadeUp 0.8s ease 0.2s forwards;
-  }
-
-  .hero-name-row {
-    display: flex;
-    align-items: flex-end;
-    gap: 36px;
-    margin-bottom: 12px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.35s forwards;
   }
 
   .hero-name {
@@ -265,7 +255,10 @@
     font-weight: 300;
     line-height: 1.05;
     letter-spacing: -0.02em;
+    margin-bottom: 8px;
     color: var(--black);
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.35s forwards;
   }
 
   .hero-name em {
@@ -273,23 +266,12 @@
     color: var(--gray-600);
   }
 
-  .hero-portrait {
-    width: 110px;
-    height: 140px;
-    object-fit: cover;
-    object-position: center top;
-    filter: grayscale(15%);
-    flex-shrink: 0;
-    margin-bottom: 8px;
-    box-shadow: 8px 8px 24px rgba(0,0,0,0.12);
-  }
-
   .hero-years {
     font-family: var(--serif);
     font-size: 1.4rem;
     font-weight: 300;
     color: var(--accent-light);
-    margin-bottom: 32px;
+    margin-bottom: 40px;
     opacity: 0;
     animation: fadeUp 0.8s ease 0.45s forwards;
   }
@@ -297,7 +279,7 @@
   .hero-desc {
     font-size: 1.05rem;
     color: var(--gray-600);
-    max-width: 480px;
+    max-width: 420px;
     line-height: 1.75;
     margin-bottom: 48px;
     opacity: 0;
@@ -339,7 +321,23 @@
 
   .btn-secondary:hover { border-color: var(--black); transform: translateY(-1px); }
 
-  .hero-image { display: none; }
+  .hero-image {
+    position: relative;
+    background: var(--gray-100);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: grayscale(15%);
+    display: block;
+  }
 
   .hero-text {
     display: flex;
@@ -1020,14 +1018,7 @@
       <span data-lang-inline="sk">Hudobný skladateľ, vysokoškolský pedagóg a čestný občan obce Cífer</span>
       <span data-lang-inline="de">Komponist, Hochschulprofessor und Ehrenbürger der Gemeinde Cífer</span>
     </p>
-    <div class="hero-name-row">
-      <h1 class="hero-name">Ladislav<br><em>Kupkovič</em></h1>
-      <img src="https://raw.githubusercontent.com/bofedo/kupkovic/main/images.jpeg"
-           class="hero-portrait"
-           alt="Ladislav Kupkovič (1936–2016)"
-           loading="eager"
-           onerror="this.style.display='none'">
-    </div>
+    <h1 class="hero-name">Ladislav<br><em>Kupkovič</em></h1>
     <p class="hero-years"><time datetime="1936">1936</time> – <time datetime="2016">2016</time></p>
     <p class="hero-desc" data-lang="sk">
       Jeden z najvýznamnejších slovenských skladateľov 20. storočia. Zakladateľ súboru Hudba dneška, profesor na Hochschule für Musik v Hannoveri, autor troch opier, siedmich symfónií a stoviek ďalších diel.
@@ -1046,7 +1037,13 @@
       </a>
     </div>
   </div>
-  <div class="hero-image"></div>
+  <div class="hero-image">
+    <img src="https://raw.githubusercontent.com/bofedo/kupkovic/main/images.jpeg"
+         class="hero-photo"
+         alt="Ladislav Kupkovič — slovenský hudobný skladateľ a profesor (1936–2016)"
+         loading="eager"
+         onerror="this.style.display='none'">
+  </div>
 </section>
 
 <!-- STATS -->
