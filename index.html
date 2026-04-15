@@ -225,24 +225,21 @@
   .hero {
     min-height: calc(100vh - 112px);
     display: grid;
-    grid-template-columns: 1fr 280px;
+    grid-template-columns: 1fr 240px 200px;
+    grid-template-rows: 1fr;
     background: var(--white);
-    padding-top: 0;
   }
 
   .hero-text {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto;
-    align-items: center;
-    gap: 0 48px;
-    padding: 60px 48px 60px 80px;
-  }
-
-  .hero-text-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 60px 48px 60px 80px;
+    grid-column: 1;
+  }
+
+  .hero-text-content {
+    display: contents;
   }
 
   .hero-eyebrow {
@@ -250,8 +247,7 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 28px;
-    max-width: 400px;
+    margin-bottom: 24px;
     line-height: 1.9;
     opacity: 0;
     animation: fadeUp 0.8s ease 0.2s forwards;
@@ -259,7 +255,7 @@
 
   .hero-name {
     font-family: var(--serif);
-    font-size: clamp(2.8rem, 4.2vw, 5.2rem);
+    font-size: clamp(2.8rem, 4vw, 5rem);
     font-weight: 300;
     line-height: 1.05;
     letter-spacing: -0.02em;
@@ -276,10 +272,10 @@
 
   .hero-years {
     font-family: var(--serif);
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: 300;
     color: var(--accent-light);
-    margin-bottom: 28px;
+    margin-bottom: 24px;
     opacity: 0;
     animation: fadeUp 0.8s ease 0.45s forwards;
   }
@@ -287,23 +283,23 @@
   .hero-desc {
     font-size: 0.95rem;
     color: var(--gray-600);
-    max-width: 360px;
+    max-width: 380px;
     line-height: 1.8;
-    margin-bottom: 36px;
+    margin-bottom: 32px;
     opacity: 0;
     animation: fadeUp 0.8s ease 0.55s forwards;
   }
 
   .hero-cta {
     display: flex;
-    gap: 14px;
+    gap: 12px;
     opacity: 0;
     animation: fadeUp 0.8s ease 0.65s forwards;
   }
 
   .btn-primary {
     display: inline-block;
-    padding: 12px 26px;
+    padding: 11px 24px;
     background: var(--black);
     color: var(--white);
     font-size: 0.72rem;
@@ -317,7 +313,7 @@
 
   .btn-secondary {
     display: inline-block;
-    padding: 12px 26px;
+    padding: 11px 24px;
     border: 1px solid var(--gray-200);
     color: var(--black);
     font-size: 0.72rem;
@@ -330,52 +326,50 @@
   .btn-secondary:hover { border-color: var(--black); transform: translateY(-1px); }
 
   .hero-image {
-    display: flex;
-    align-items: center;
-    align-self: center;
-    opacity: 0;
-    animation: fadeIn 1s ease 0.5s forwards;
+    grid-column: 2;
+    overflow: hidden;
+    background: var(--gray-100);
   }
 
   .hero-photo {
-    width: 200px;
-    height: 260px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    object-position: center 15%;
+    object-position: center 10%;
     filter: grayscale(10%);
     display: block;
-    box-shadow: 12px 12px 40px rgba(0,0,0,0.12);
   }
 
   .hero-stats {
+    grid-column: 3;
     background: var(--gray-100);
+    border-left: 1px solid var(--gray-200);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 48px 40px;
-    border-left: 1px solid var(--gray-200);
+    padding: 40px 32px;
   }
 
   .hero-stat-item {
-    padding: 24px 0;
+    padding: 20px 0;
     border-bottom: 1px solid var(--gray-200);
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
   }
 
   .hero-stat-item:last-child { border-bottom: none; }
 
   .hero-stat-number {
     font-family: var(--serif);
-    font-size: clamp(2.8rem, 3.5vw, 4rem);
+    font-size: 3rem;
     font-weight: 300;
     line-height: 1;
     color: var(--accent);
   }
 
   .hero-stat-label {
-    font-size: 0.6rem;
+    font-size: 0.58rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gray-400);
@@ -506,7 +500,7 @@
   }
 
   /* ── TIMELINE ── */
-  .timeline-section { background: var(--gray-100); }
+  .timeline-section { padding: 100px 80px; }
 
   .timeline {
     position: relative;
@@ -910,39 +904,33 @@
 </div>
 
 <!-- HERO -->
-<section class="hero" style="padding:0" aria-label="Úvod">
+<section class="hero" aria-label="Úvod">
   <div class="hero-text">
-    <div class="hero-text-content">
-      <p class="hero-eyebrow">
-        <span data-lang-inline="sk">Hudobný skladateľ, vysokoškolský pedagóg a čestný občan obce Cífer</span>
-        <span data-lang-inline="de">Komponist, Hochschulprofessor und Ehrenbürger der Gemeinde Cífer</span>
-      </p>
-      <h1 class="hero-name">Ladislav<br><em>Kupkovič</em></h1>
-      <p class="hero-years"><time datetime="1936">1936</time> – <time datetime="2016">2016</time></p>
-      <p class="hero-desc" data-lang="sk">
-        Jeden z najvýznamnejších slovenských skladateľov 20. storočia. Zakladateľ súboru Hudba dneška, profesor na Hochschule für Musik v Hannoveri, autor troch opier, siedmich symfónií a stoviek ďalších diel.
-      </p>
-      <p class="hero-desc" data-lang="de">
-        Einer der bedeutendsten slowakischen Komponisten des 20. Jahrhunderts. Gründer des Ensembles Hudba dneška, Professor an der Hochschule für Musik in Hannover, Autor von drei Opern, sieben Symphonien und Hunderten weiterer Werke.
-      </p>
-      <div class="hero-cta">
-        <a href="#zivotopis" class="btn-primary">
-          <span data-lang-inline="sk">Životopis</span>
-          <span data-lang-inline="de">Lebenslauf</span>
-        </a>
-        <a href="#tvorba" class="btn-secondary">
-          <span data-lang-inline="sk">Zoznam diel</span>
-          <span data-lang-inline="de">Werkverzeichnis</span>
-        </a>
-      </div>
+    <p class="hero-eyebrow">
+      <span data-lang-inline="sk">Hudobný skladateľ, vysokoškolský pedagóg a čestný občan obce Cífer</span>
+      <span data-lang-inline="de">Komponist, Hochschulprofessor und Ehrenbürger der Gemeinde Cífer</span>
+    </p>
+    <h1 class="hero-name">Ladislav<br><em>Kupkovič</em></h1>
+    <p class="hero-years"><time datetime="1936">1936</time> – <time datetime="2016">2016</time></p>
+    <p class="hero-desc" data-lang="sk">Jeden z najvýznamnejších slovenských skladateľov 20. storočia. Zakladateľ súboru Hudba dneška, profesor na Hochschule für Musik v Hannoveri, autor troch opier, siedmich symfónií a stoviek ďalších diel.</p>
+    <p class="hero-desc" data-lang="de">Einer der bedeutendsten slowakischen Komponisten des 20. Jahrhunderts. Gründer des Ensembles Hudba dneška, Professor an der Hochschule für Musik in Hannover, Autor von drei Opern, sieben Symphonien und Hunderten weiterer Werke.</p>
+    <div class="hero-cta">
+      <a href="#zivotopis" class="btn-primary">
+        <span data-lang-inline="sk">Životopis</span>
+        <span data-lang-inline="de">Lebenslauf</span>
+      </a>
+      <a href="#tvorba" class="btn-secondary">
+        <span data-lang-inline="sk">Zoznam diel</span>
+        <span data-lang-inline="de">Werkverzeichnis</span>
+      </a>
     </div>
-    <div class="hero-image">
-      <img src="https://raw.githubusercontent.com/bofedo/kupkovic/main/images.jpeg"
-           class="hero-photo"
-           alt="Ladislav Kupkovič (1936–2016)"
-           loading="eager"
-           onerror="this.style.display='none'">
-    </div>
+  </div>
+  <div class="hero-image">
+    <img src="https://raw.githubusercontent.com/bofedo/kupkovic/main/images.jpeg"
+         class="hero-photo"
+         alt="Ladislav Kupkovič (1936–2016)"
+         loading="eager"
+         onerror="this.style.display='none'">
   </div>
   <div class="hero-stats">
     <div class="hero-stat-item">
@@ -972,7 +960,7 @@
 <main>
 
 <!-- BIO -->
-<section id="zivotopis" style="background:var(--white)">
+<section id="zivotopis" style="background:var(--gray-100)">
   <div class="bio-section">
     <div class="bio-aside">
       <p class="section-label" data-lang-inline="sk">Životopis</p>
@@ -1000,7 +988,7 @@
 </section>
 
 <!-- TIMELINE -->
-<section class="timeline-section">
+<section class="timeline-section" style="background:var(--white)">
   <p class="section-label">
     <span data-lang-inline="sk">Životná cesta</span>
     <span data-lang-inline="de">Lebensweg</span>
@@ -1068,7 +1056,7 @@
 </section>
 
 <!-- WORKS OVERVIEW -->
-<section id="tvorba">
+<section id="tvorba" style="background:var(--gray-100)">
   <p class="section-label">
     <span data-lang-inline="sk">Tvorba</span>
     <span data-lang-inline="de">Werke</span>
@@ -1128,7 +1116,7 @@
 </section>
 
 <!-- COMPOSITIONS DETAIL -->
-<section class="compositions-section" style="background:var(--gray-100)">
+<section class="compositions-section" style="background:var(--white)">
   <p class="section-label">
     <span data-lang-inline="sk">Zoznam skladieb</span>
     <span data-lang-inline="de">Werkverzeichnis</span>
@@ -1404,7 +1392,7 @@
 </section>
 
 <!-- MEDIA / RADIO DEVIN -->
-<section style="background:var(--white);padding:100px 80px" id="media">
+<section style="background:var(--gray-100);padding:100px 80px" id="media">
   <p class="section-label">
     <span data-lang-inline="sk">Médiá &amp; Spomienky</span>
     <span data-lang-inline="de">Medien &amp; Erinnerungen</span>
