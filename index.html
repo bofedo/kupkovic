@@ -1629,8 +1629,8 @@
     <h3 style="font-family:var(--serif);font-size:1.8rem;font-weight:300;margin-bottom:32px" data-lang="sk">Napíšte nám</h3>
     <h3 style="font-family:var(--serif);font-size:1.8rem;font-weight:300;margin-bottom:32px" data-lang="de">Schreiben Sie uns</h3>
     <form id="contact-form" action="https://formspree.io/f/xgorojbw" method="POST">
-      <input type="hidden" name="_replyto" value="">
       <input type="hidden" name="_subject" value="Správa z webu Ladislav Kupkovič">
+      <input type="hidden" name="_next" value="https://www.ladislav-kupkovic.com/#kontakt">
 
       <div class="form-group">
         <label data-lang-inline="sk">Meno</label>
@@ -1645,15 +1645,6 @@
         <label data-lang-inline="sk">Správa</label>
         <label data-lang-inline="de">Nachricht</label>
         <textarea name="message" required></textarea>
-      </div>
-
-      <div id="form-success" style="display:none;padding:16px;background:#f0f7f0;color:#2d6a2d;font-size:0.9rem;margin-bottom:16px;border-left:3px solid #2d6a2d">
-        <span data-lang-inline="sk">✓ Správa bola odoslaná. Ďakujeme!</span>
-        <span data-lang-inline="de">✓ Nachricht wurde gesendet. Danke!</span>
-      </div>
-      <div id="form-error" style="display:none;padding:16px;background:#fdf0f0;color:#8b2020;font-size:0.9rem;margin-bottom:16px;border-left:3px solid #c0392b">
-        <span data-lang-inline="sk">✗ Nastala chyba. Skúste znova alebo napíšte priamo na i.kupkovic@t-online.de</span>
-        <span data-lang-inline="de">✗ Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut oder schreiben Sie direkt an i.kupkovic@t-online.de</span>
       </div>
 
       <button type="submit" id="submit-btn" class="btn-primary" style="border:none;cursor:pointer;width:100%;text-align:center;display:block">
@@ -1697,36 +1688,6 @@
     document.querySelectorAll('.era-tab').forEach(t => t.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     e.currentTarget.classList.add('active');
-  }
-
-  // Contact form via Formspree
-  const form = document.getElementById('contact-form');
-  if (form) {
-    form.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const btn = document.getElementById('submit-btn');
-      btn.textContent = '...';
-      btn.disabled = true;
-      try {
-        const res = await fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' }
-        });
-        if (res.ok) {
-          document.getElementById('form-success').style.display = 'block';
-          document.getElementById('form-error').style.display = 'none';
-          form.reset();
-        } else {
-          throw new Error('Server error');
-        }
-      } catch {
-        document.getElementById('form-error').style.display = 'block';
-        document.getElementById('form-success').style.display = 'none';
-      }
-      btn.innerHTML = '<span data-lang-inline="sk">Odoslať</span><span data-lang-inline="de">Absenden</span>';
-      btn.disabled = false;
-    });
   }
 
   // Scroll animations for timeline
