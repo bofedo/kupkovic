@@ -833,23 +833,131 @@
   body.de [data-lang-inline="de"] { display: inline; }
   [data-lang-inline="de"] { display: none; }
 
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--black);
+    transition: all 0.3s;
+  }
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 64px;
+    left: 0; right: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 8px 24px;
+    z-index: 99;
+    flex-direction: column;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--gray-200);
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+  }
+  .mobile-nav a:last-child { border-bottom: none; }
+  @media (max-width: 900px) {
+    .nav-hamburger { display: flex; }
+  }
+
   /* ── MOBILE ── */
   @media (max-width: 900px) {
-    nav { padding: 0 24px; }
+
+    /* Nav */
+    nav { padding: 0 20px; }
     .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; grid-template-rows: auto; }
-    .hero-image { height: 50vw; }
-    .hero-stats { flex-direction: row; flex-wrap: wrap; padding: 32px; gap: 0; }
-    .hero-stat-item { width: 50%; border-bottom: 1px solid rgba(255,255,255,0.08); border-right: 1px solid rgba(255,255,255,0.08); padding: 20px; }
-    .hero-text { padding: 48px 32px; }
-    section { padding: 60px 32px; }
-    .bio-section { grid-template-columns: 1fr; }
+
+    /* Hero — stack vertically */
+    .hero {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
+      min-height: unset;
+    }
+    .hero-text { padding: 48px 24px 32px; }
+    .hero-image { height: 60vw; }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-left: none;
+      border-top: 1px solid var(--gray-200);
+      padding: 0;
+    }
+    .hero-stat-item {
+      padding: 24px 20px;
+      border-bottom: 1px solid var(--gray-200);
+      border-right: 1px solid var(--gray-200);
+    }
+    .hero-stat-item:nth-child(even) { border-right: none; }
+    .hero-stat-number { font-size: 2.4rem; }
+
+    /* Announcement banner */
+    .hero + div a > div { flex-wrap: wrap; }
+
+    /* General sections */
+    section { padding: 56px 24px; }
+    .timeline-section { padding: 56px 24px !important; }
+
+    /* Bio */
+    .bio-section { grid-template-columns: 1fr; gap: 40px; }
     .bio-aside { position: static; }
-    .works-grid { grid-template-columns: 1fr; }
+
+    /* Timeline */
+    .timeline { padding-left: 40px; }
+    .timeline-dot { left: -44px; }
+
+    /* Works grid */
+    .works-grid { grid-template-columns: 1fr; gap: 2px; }
+
+    /* Era tabs — scrollable */
+    .era-tabs {
+      display: flex;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      gap: 4px;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 4px;
+    }
+    .era-tab { white-space: nowrap; flex-shrink: 0; }
+
+    /* Compositions */
     #era-obsadenie { column-count: 1 !important; }
+    .composition-entry { grid-template-columns: 60px 1fr; gap: 16px; }
+
+    /* Media section */
+    #media > div { grid-template-columns: 1fr !important; }
+
+    /* Contact */
     .contact-section { grid-template-columns: 1fr; }
-    .contact-info, .contact-form-area { padding: 48px 32px; }
-    footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px; }
+    .contact-info, .contact-form-area { padding: 48px 24px; }
+
+    /* Footer */
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px 24px; }
+  }
+
+  /* Small phones */
+  @media (max-width: 480px) {
+    nav { height: 56px; }
+    .hero-text { padding: 40px 20px 28px; }
+    .hero-name { font-size: 2.6rem; }
+    section { padding: 48px 20px; }
+    .btn-primary, .btn-secondary { padding: 10px 18px; font-size: 0.68rem; }
+    .hero-cta { flex-direction: column; gap: 10px; }
+    .hero-cta a { text-align: center; }
   }
 </style>
 </head>
@@ -865,11 +973,34 @@
     <li><a href="#media" data-lang-inline="sk">Médiá</a><a href="#media" data-lang-inline="de">Medien</a></li>
     <li><a href="#kontakt" data-lang-inline="sk">Kontakt</a><a href="#kontakt" data-lang-inline="de">Kontakt</a></li>
   </ul>
-  <div class="lang-switch">
-    <button class="active" onclick="setLang('sk')">SK</button>
-    <button onclick="setLang('de')">DE</button>
+  <div style="display:flex;align-items:center;gap:16px">
+    <div class="lang-switch">
+      <button class="active" onclick="setLang('sk')">SK</button>
+      <button onclick="setLang('de')">DE</button>
+    </div>
+    <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobile-nav">
+  <a href="#zivotopis" onclick="toggleMenu()">
+    <span data-lang-inline="sk">Životopis</span>
+    <span data-lang-inline="de">Lebenslauf</span>
+  </a>
+  <a href="#tvorba" onclick="toggleMenu()">
+    <span data-lang-inline="sk">Tvorba</span>
+    <span data-lang-inline="de">Werke</span>
+  </a>
+  <a href="#video" onclick="toggleMenu()">Video</a>
+  <a href="#media" onclick="toggleMenu()">
+    <span data-lang-inline="sk">Médiá</span>
+    <span data-lang-inline="de">Medien</span>
+  </a>
+  <a href="#kontakt" onclick="toggleMenu()">Kontakt</a>
+</div>
 
 <!-- ANNOUNCEMENT BANNER -->
 <div style="background:var(--black);padding-top:64px">
@@ -1497,7 +1628,7 @@
     </p>
     <h3 style="font-family:var(--serif);font-size:1.8rem;font-weight:300;margin-bottom:32px" data-lang="sk">Napíšte nám</h3>
     <h3 style="font-family:var(--serif);font-size:1.8rem;font-weight:300;margin-bottom:32px" data-lang="de">Schreiben Sie uns</h3>
-    <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <form id="contact-form" action="https://formspree.io/f/xgorojbw" method="POST">
       <input type="hidden" name="_replyto" value="">
       <input type="hidden" name="_subject" value="Správa z webu Ladislav Kupkovič">
 
@@ -1546,6 +1677,11 @@
 </footer>
 
 <script>
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobile-nav').classList.toggle('open');
+  }
+
   // Language toggle
   function setLang(lang) {
     document.body.classList.toggle('de', lang === 'de');
